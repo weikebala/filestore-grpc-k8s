@@ -9,11 +9,11 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 80
+      nodeport: 37844
       name: traefik-fron
     - port: 8081
       targetPort: 8081
-      nodePort: 8081
+      nodeport: 37845
       name: traefik-back
   type: NodePort
 
