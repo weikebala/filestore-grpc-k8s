@@ -33,4 +33,4 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 29003
-            name: dbproxy-rpc-port
+            name: dbproxy-port

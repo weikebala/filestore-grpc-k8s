@@ -34,4 +34,4 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 29000
-            name: accounts-rpc-port
+            name: accounts-port

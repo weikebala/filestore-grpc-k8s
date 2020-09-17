@@ -9,7 +9,6 @@ upload
 download
 account
 apigw
-weikebala
 "
 
 # 编译service可执行文件
