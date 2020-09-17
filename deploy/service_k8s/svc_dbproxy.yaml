@@ -6,12 +6,13 @@ metadata:
     app: svc-dbproxy
 spec:
   ports:
-  - port: 8080
+  - port: 29003
+    targetPort: 29003
     protocol: TCP
   selector:
     app: svc-dbproxy
 ---
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: default
@@ -28,16 +29,8 @@ spec:
     spec:
       containers:
         - name: svc-dbproxy
-          command: [
-            "/dbproxy",
-            "--server_address=0.0.0.0:8080",
-            "--broker_address=0.0.0.0:10001",
-            # mysql地址请根据实际情况进行更改
-            "--dbhost=192.168.2.244:3306",
-            "--registry=kubernetes",
-          ]
-          image: hub.fileserver.com/filestore/dbproxy
+          image: weikebala/filestore_grpc_k8s_dbproxy
           imagePullPolicy: IfNotPresent
           ports:
-          - containerPort: 8080
-            name: dbproxy-port
+          - containerPort: 29003
+            name: dbproxy-rpc-port

@@ -6,16 +6,18 @@ metadata:
     app: svc-download
 spec:
   ports:
-  - port: 8080
+  - port: 29001
+    targetPort: 29001
     protocol: TCP
     name: downloadrpc
   - port: 38080
+    targetPort: 38080
     protocol: TCP
     name: downloadrest
   selector:
     app: svc-download
 ---
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: default
@@ -32,16 +34,10 @@ spec:
     spec:
       containers:
         - name: svc-download
-          command: [
-            "/download",
-            "--server_address=0.0.0.0:8080",
-            "--broker_address=0.0.0.0:10001",
-            "--registry=kubernetes",
-          ]
-          image: hub.fileserver.com/filestore/download
+          image: weikebala/filestore_grpc_k8s_download
           imagePullPolicy: IfNotPresent
           ports:
-          - containerPort: 8080
+          - containerPort: 29001
             name: downloadrpc
           - containerPort: 38080
             name: downloadrest

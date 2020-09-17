@@ -6,16 +6,18 @@ metadata:
     app: svc-upload
 spec:
   ports:
-  - port: 8080
+  - port: 29002
+    targetPort: 29002
     protocol: TCP
     name: uploadrpc
   - port: 28080
+    targetPort: 29001
     protocol: TCP
     name: uploadrest
   selector:
     app: svc-upload
 ---
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: default
@@ -32,16 +34,10 @@ spec:
     spec:
       containers:
         - name: svc-upload
-          command: [
-            "/upload",
-            "--server_address=0.0.0.0:8080",
-            "--broker_address=0.0.0.0:10001",
-            "--registry=kubernetes",
-          ]
-          image: hub.fileserver.com/filestore/upload
+          image: weikebala/filestore_grpc_k8s_upload
           imagePullPolicy: IfNotPresent
           ports:
-          - containerPort: 8080
+          - containerPort: 29001
             name: uploadrpc
           - containerPort: 28080
             name: uploadrest

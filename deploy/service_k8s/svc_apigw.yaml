@@ -7,11 +7,12 @@ metadata:
 spec:
   ports:
   - port: 8080
+    targetPort: 8080
     protocol: TCP
   selector:
     app: svc-apigw
 ---
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: default
@@ -28,12 +29,8 @@ spec:
     spec:
       containers:
         - name: svc-apigw
-          command: [
-            "/apigw",
-            "--registry=kubernetes",
-          ]
-          image: hub.fileserver.com/filestore/apigw
+          image: weikebala/filestore_grpc_k8s_apigw
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 8080
-            name: apigw-port
+            name: apigw-http-port
