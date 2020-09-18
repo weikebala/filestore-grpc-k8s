@@ -10,8 +10,8 @@ spec:
     targetPort: 29002
     protocol: TCP
     name: uploadrpc
-  - port: 28080
-    targetPort: 29001
+  - port: 29001
+    targetPort: 28080
     protocol: TCP
     name: uploadrest
   selector:
