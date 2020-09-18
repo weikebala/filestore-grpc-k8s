@@ -214,7 +214,7 @@ spec:
       terminationGracePeriodSeconds: 300
       serviceAccountName: nginx-ingress-serviceaccount
       nodeSelector:                  #注意修改自己nodeSelector
-        role: master
+        traefik: proxy
       hostNetwork: true
       containers:
         - name: nginx-ingress-controller
