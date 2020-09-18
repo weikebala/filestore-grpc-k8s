@@ -1,6 +1,7 @@
 package api
 
 import (
+	"filestore-grpc-k8s/service/download/config"
 	"fmt"
 	"log"
 	"net/http"
@@ -40,7 +41,7 @@ func DownloadURLHandler(c *gin.Context) {
 		username := c.Request.FormValue("username")
 		token := c.Request.FormValue("token")
 		tmpURL := fmt.Sprintf("http://%s/file/download?filehash=%s&username=%s&token=%s",
-			c.Request.Host, filehash, username, token)
+			config.DownloadEntry, filehash, username, token)
 		c.Data(http.StatusOK, "application/octet-stream", []byte(tmpURL))
 	} else if strings.HasPrefix(tblFile.FileAddr.String, cfg.OSSRootDir) {
 		// oss下载url
