@@ -23,10 +23,10 @@ spec:
           ports:
             - containerPort: 8080
               hostPort: 80
-          volumeMounts:
-            - mountPath: /etc/nginx/conf.d
-              name: nginx-conf
-      volumes:
-        - name: nginx-conf
-          hostPath:
-            path: nginxcfg
+#          volumeMounts:
+#            - mountPath: /etc/nginx/conf.d
+#              name: nginx-conf
+#      volumes:
+#        - name: nginx-conf
+#          hostPath:
+#            path: nginxcfg
