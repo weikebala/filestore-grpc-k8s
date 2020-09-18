@@ -187,7 +187,7 @@ subjects:
 
 ---
 
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
@@ -292,3 +292,5 @@ spec:
         memory: 90Mi
         cpu: 100m
       type: Container
+
+
