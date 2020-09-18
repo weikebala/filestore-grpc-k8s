@@ -29,4 +29,4 @@ spec:
       volumes:
         - name: nginx-conf
           hostPath:
-            path: nginxcfg
+            path: /project/go/filestore-grpc-k8s/deploy/service_k8s/nginxcfg
