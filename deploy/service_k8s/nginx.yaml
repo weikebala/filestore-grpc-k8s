@@ -17,16 +17,9 @@ spec:
       nodeSelector:
         traefik: proxy
       containers:
-        - image: nginx
+        - image: weikebala/filestore_grpc_k8s_nginx
           imagePullPolicy: IfNotPresent
           name: nginx
           ports:
             - containerPort: 80
               hostPort: 80
-          volumeMounts:
-            - mountPath: /etc/nginx/conf.d
-              name: nginx-conf
-      volumes:
-        - name: nginx-conf
-          hostPath:
-            path: /project/go/filestore-grpc-k8s/deploy/service_k8s/nginxcfg
