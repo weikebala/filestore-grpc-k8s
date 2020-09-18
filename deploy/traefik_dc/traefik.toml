@@ -1,8 +1,0 @@
-## traefik.toml
-
-# API and dashboard configuration
-[api]
-
-# Docker configuration backend
-[docker]
-  domain = "fileserver.com"
